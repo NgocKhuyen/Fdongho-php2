@@ -1,0 +1,148 @@
+:root {
+    --primary-color: #DB772E;
+    --secondary-color: #ffffff;
+    --bg-color: #333333;
+    --bg-item-color: #f9f9f9;
+}
+.bg-header {
+    background-color: var(--bg-color);
+}
+.bt-color {
+    background-color: var(--primary-color);
+    color: white;
+}
+.ic-color {
+    color: var(--primary-color);
+}
+.badge {
+    background-color: var(--primary-color);
+}
+.title {
+    color:#DB772E;
+}
+/*  */
+.img-hover {
+    overflow: hidden; /* Ensures the zoomed image stays within the container */
+}
+
+.img-hover img {
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.img-hover:hover img {
+    transform: scale(1.1); /* Zooms the image to 1.2x on hover */
+}
+
+
+.bn-hov {
+    overflow: hidden; /* Ensures the zoomed image stays within the container */
+}
+
+.bn-hov img {
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+}
+
+.bn-hov:hover img {
+    transform: scale(0.95); /* Zooms the image to 1.2x on hover */
+}
+
+
+/*  */
+.footer-top {
+    background-color: var(--bg-color);
+}
+
+/* Sản phẩm */
+.bg-infor{
+    background-color: var(--bg-item-color);
+}
+.link-hover:hover {
+    color: var(--primary-color);
+}
+.btn-dr{
+    background-color: var(--bg-color);
+    color: white;
+}
+.btn-dr:hover {
+    background-color: var(--secondary-color);   
+    border: 1px solid #333333;
+}
+.bt-col {
+    border: 1px solid #333333;
+}
+.bt-col:hover {
+    border: 1px solid var(--primary-color);
+}
+/* Chi tiết */
+.btn-size {
+    background-color:var(--secondary-color);
+    color: var(--bg-color);
+    border: 1px solid; 
+}
+.btn-size:hover {
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--bg-color);
+}
+.soluong {
+    width: 100px;
+    height: 50px;
+}
+.add-cart{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 3px;
+}
+.add-cart:hover{
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 3px;
+    transition: 0.5s;
+}
+/* Giỏ hàng */
+
+.btn-chec{
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    border: none;
+    height: 40px;
+}
+.btn-chec:hover{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    transition: 0.5s;
+}
+.sl{
+    width: 50px;
+    height: 30px;
+}
+/* Thanh toán */
+.thanhtoan{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    height: 40px;
+}
+.thanhtoan:hover{
+    background-color: #e89b58; ;
+    border: none;
+    transition: 0.5s;
+}
+.thanhtoan:active {
+    background-color: #c46520; /* Màu tối hơn khi click */
+    color: var(--secondary-color);
+    border: none;
+}
+/* Đăng kí */
+.cascading-right {
+    margin-right: -50px;
+}
+
+@media (max-width: 991.98px) {
+    .cascading-right {
+    margin-right: 0;
+    }
+}

@@ -1,0 +1,35 @@
+<?php
+    session_start();
+    require_once 'config.php';
+    spl_autoload_register(function($class) {
+        require "controllers/" . $class . ".php";
+    });
+    $baseDir = "/dongho/";
+
+    $router = [
+        'get' => [
+            '' => [new ProductController, 'index'],
+            'product' => [new ProductController, 'product'],
+            'detail' => [new ProductController, 'detail'],
+            'category' => [new ProductController, 'category'],
+            'searchform' => [new ProductController, 'searchForm'],
+        ],
+        'post' => [
+            'searchResult' => [new ProductController, 'searchResult']
+        ]
+    ];
+
+    // http://localhost:3000/dongho/loai?id=2&page=1
+    $path = substr($_SERVER['REQUEST_URI'], strlen($baseDir)); // loai?id=2&page=1
+    $arr = explode('?', $path); // ['Loai', 'id=2&page=1']
+    $route = strtolower($arr[0]); // 'Loai'
+    if(count($arr) >= 2) parse_str($arr[1], $params);  // [id => 2, page => 1]
+    else $params = [];
+    $method = strtolower($_SERVER['REQUEST_METHOD']); // get | post
+    if(!array_key_exists($method, $router)) die("Method không phù hợp: ". $method);
+    if(!array_key_exists($route, $router[$method])) die("Route không tồn tại: ". $route);
+    $action = $router[$method][$route]; // [0 => SanPhamController, 1 => index]
+    // var_export($action);
+    call_user_func($action);
+
+?>
