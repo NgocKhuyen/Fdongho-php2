@@ -21,6 +21,9 @@
     color:#DB772E;
 }
 /*  */
+.img-thumbnail {
+    padding: 60px !important;
+}
 .img-hover {
     overflow: hidden; /* Ensures the zoomed image stays within the container */
 }

@@ -2,23 +2,21 @@
     session_start();
     require_once 'config.php';
     spl_autoload_register(function($class) {
-        require "controllers/" . $class . ".php";
+        require "controllers/". $class .".php";
     });
     $baseDir = "/dongho/";
 
-    $router = [
+    $router = [ 
         'get' => [
             '' => [new ProductController, 'index'],
-            'product' => [new ProductController, 'product'],
-            'detail' => [new ProductController, 'detail'],
-            'category' => [new ProductController, 'category'],
-            'searchform' => [new ProductController, 'searchForm'],
-        ],
-        'post' => [
-            'searchResult' => [new ProductController, 'searchResult']
+            'loai' => [new ProductController, 'category'],
+            'sanpham' => [new ProductController, 'product'],
+            'chitiet' => [new ProductController, 'detail']
         ]
     ];
 
+    
+   
     // http://localhost:3000/dongho/loai?id=2&page=1
     $path = substr($_SERVER['REQUEST_URI'], strlen($baseDir)); // loai?id=2&page=1
     $arr = explode('?', $path); // ['Loai', 'id=2&page=1']
