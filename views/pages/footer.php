@@ -10,13 +10,13 @@
                                 <h6 class="text-white">Văn phòng chính</h6>
                             </li>
                             <li class="nav-item">
-                                <small class="text-white">Quận 12, TP. HCM</small>
+                                <small class="text-white">Tòa nhà QTSC9 (toà T), đường Tô Ký, Phường Trung Mỹ Tây, TP HCM</small>
                             </li>
                             <li class="nav-item">
-                                <small class="text-white">0564551202</small>
+                                <small class="text-white">Số điện thoại: 0564551202</small>
                             </li>
                             <li class="nav-item">
-                                <small class="text-white">ngockhuyen2k2@gmail.com</small>
+                                <small class="text-white">email: ngockhuyen2k2@gmail.com</small>
                             </li>
                             <li class="nav-item">
                                 <h4 class="text-white mb-3 mt-3">Mạng xã hội</h4> 
