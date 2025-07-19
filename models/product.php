@@ -28,6 +28,17 @@
                     LIMIT 4";
             return $this->query($sql);
         }
+
+        function product_detail($slug) {
+            $sql = "SELECT p.*, c.name AS category_name FROM products p INNER JOIN categories c ON p.category_id = c.id WHERE p.slug = '$slug'";
+            return $this->query_one($sql);
+        }
+
+        function product_related($category) {
+            $sql = "SELECT * FROM products p INNER JOIN categories c ON  p.category_id = c.id WHERE p.category_id = $category ORDER BY p.id DESC LIMIT 4";
+            return $this->query($sql);
+        }
+        
     } // class product
 
 ?>
