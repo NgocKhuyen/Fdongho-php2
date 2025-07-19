@@ -34,7 +34,14 @@
             include "views/layout.php";
         }
         function detail() {
-            $title_page = "Trang chi tiết sản phẩm";
+            global $params;
+            $slug = $params['slug'];
+            $detail = $this->model->product_detail($slug);
+            $product_related = $this->model->product_related($detail['category_id']);
+            echo "<pre>";
+            print_r($product_related);
+            echo "</pre>";
+            $title_page = $detail['name'];
             $view = "pages/detail.php";
             include "views/layout.php";
         }

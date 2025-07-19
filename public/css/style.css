@@ -96,13 +96,14 @@
     color: var(--secondary-color);
     border: none;
     border-radius: 3px;
+    transition: 0.25s ease;
+
 }
 .add-cart:hover{
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    border: none;
+    background-color: var(--bg-item-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 3px;
-    transition: 0.5s;
 }
 /* Giỏ hàng */
 

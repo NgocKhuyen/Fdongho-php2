@@ -25,7 +25,7 @@
         function query_one($sql) { // Lấy 1 decord
             try {
                 $result = $this->conn->query($sql);
-                return $result->fetch();
+                return $result->fetch(PDO::FETCH_ASSOC);
             } 
             catch(Exception $e) {
                 die("Lỗi lấy decord: " .$e->getMessage()."<br>".$sql);

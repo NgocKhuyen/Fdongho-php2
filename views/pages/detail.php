@@ -14,26 +14,34 @@
         <div class="row">
             <!-- Start danh mục sản phẩm  -->       
             <div class="col-md-4 m-auto">
-                <img src="./image/dongho1.webp" alt="">
+                <img src="<?=PUBLIC_URL?>/image/<?=$detail['img']?>" alt="">
             </div>
             <!-- End danh mục sản phẩm  -->
             <!-- Start Chi tiết sản phẩm  -->
             <div class="col-md-7">
-                <h4 class="fw-bold mb-2">Đồng hồ casio AE-1200WHD-1ABDF</h4>
+                <h4 class="fw-bold mb-2"><?=$detail['name']?></h4>
                 <div class="mb-4">
-                    <span>Số lượng: 318 |</span>
-                    <span>Lượt xem: 11 |</span>
-                    <i class="bi bi-star-fill text-warning me-2"></i><span>(0 đánh giá)</span>
+                    <span>Số lượng: <?=$detail['sold']?> |</span>
+                    <span>Lượt xem: <?=$detail['view']?> |</span>
+                    <div class="d-inline">
+                        <?php
+                            for ($i = 1; $i <= floor($detail['rating']); $i++) : ?>
+                                <i class="bi bi-star-fill text-warning me-2"></i>
+                            <?php endfor;
+                            
+                            for ($i = 1; $i <= floor(5 - floor($detail['rating'])); $i++) : ?>
+                                <i class="bi bi-star me-2"></i>
+                            <?php endfor;
+                        ?>
+                    </div>
+                    <span>(1 đánh giá)</span>
                 </div>
-                <h5 class="title mb-4 fw-semibold">Giá: 1.300.000đ</h5>
-                <p class="mb-4">Lorem, ipsum dolor sit amet consectetur 
-                                adipisicing elit. Id aut consequatur esse nihil
-                                    voluptatem illo accusantium nesciunt. Eaque accusamus 
-                                    sapiente reprehenderit tenetur perferendis laboriosam excepturi.
-                                    Eius consequuntur veniam deleniti aperiam!
-                                    apiente reprehenderit tenetur perferendis laboriosam excepturi.
-                                    Eius consequuntur veniam deleniti aperiam!</p>
-                <div class="d-flex align-items-center mb-3">
+                <h5 class="title mb-4 fw-semibold"><?=number_format($detail['price'] * $detail['sale'], 0, ',', '.')?>₫</h5>
+                <p class="mb-4">
+                    <?=$detail['description']?>
+                </p>
+
+                <!-- <div class="d-flex align-items-center mb-3">
                     <span class="fw-semibold me-2">Size:</span>
                     <div class="">
                         <button class="btn btn-size">S</button>
@@ -52,10 +60,10 @@
                         <img src="./image/den.jpg" class="rounded-circle border me-2" width="30" height="30" alt="...">
                         <img src="./image/do.jpg" class="rounded-circle border" width="30" height="30" alt="...">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="d-flex mb-3">
-                    <input type="number" class="soluong fs-5 text-center me-3 p-2" value="1">
+                    <input type="number" class="soluong fs-5 text-center me-3 p-2" value="1" min="1" max="<?=$detail['quantity']?>">
                     <button class="d-flex align-items-center add-cart p-2 me-3">
                         <a href="thanhtoan.html" class="nav-link">Mua ngay</a>
                     </button>
@@ -66,8 +74,8 @@
                 </div>
 
                 <div>
-                    <p class="fw-semibold mb-2">Mã hàng: 12</p>
-                    <p class="fw-semibold" >Thể loại: Đồng hồ Casio</p>
+                    <p class="fw-semibold mb-2">Thương hiệu: <?=$detail['brand']?></p>
+                    <p class="fw-semibold" >Danh mục: <?=$detail['category_name']?></p>
                 </div>
             </div>
             <!-- End Chi tiết sản phẩm  -->
@@ -92,17 +100,21 @@
     <div class="container mb-3">
         <h3 class="title text-uppercase mb-2">Sản phẩm Liên quan</h3><hr class="mt-0 border-3 title">
         <div class="row">
-            <div class="col-6 col-md-3 mb-3">
-                <div class="card text-center shadow">
-                    <div class="img-hover img-thumbnail">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/472/501/products/dong-ho-nam-lobinni-no-16003-chinh-hang-avt.jpg?v=1677324045953" class="w-100" alt="">
+            <?php
+                foreach($product_related as $product) : ?>
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card text-center shadow">
+                            <div class="img-hover img-thumbnail">
+                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"><?=$product['name']?></h5>
+                                <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Đồng Hồ Nam I&W Carnival 787G2 Automatic</h5>
-                        <h5 class="card-text fw-medium title">5.580.000₫</h5>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach;
+            ?>
         </div>
     </div>
     <!-- End Sản phẩm Liên quan -->
