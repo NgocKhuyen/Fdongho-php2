@@ -17,7 +17,7 @@
             $product_female = $this->model->product_female();
             $_SESSION['category'] = $this->modelC->category_name();
             // echo "<pre>";
-            // print_r($category_name);
+            // print_r($product_male);
             // echo "</pre>";
             $title_page = "Trang chủ";
             $view = "pages/home.php";
@@ -38,9 +38,9 @@
             $slug = $params['slug'];
             $detail = $this->model->product_detail($slug);
             $product_related = $this->model->product_related($detail['category_id']);
-            echo "<pre>";
-            print_r($product_related);
-            echo "</pre>";
+            // echo "<pre>";
+            // print_r($product_related);
+            // echo "</pre>";
             $title_page = $detail['name'];
             $view = "pages/detail.php";
             include "views/layout.php";

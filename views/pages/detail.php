@@ -10,15 +10,15 @@
     </div>
 
     
-    <div class="container mb-5">
+    <div class="container mt-4 mb-5">
         <div class="row">
             <!-- Start danh mục sản phẩm  -->       
-            <div class="col-md-4 m-auto">
-                <img src="<?=PUBLIC_URL?>/image/<?=$detail['img']?>" alt="">
+            <div class="col-md-6 d-flex justify-content-center">
+                <img src="<?=PUBLIC_URL?>/image/<?=$detail['img']?>" alt="" class="mx-auto">
             </div>
             <!-- End danh mục sản phẩm  -->
             <!-- Start Chi tiết sản phẩm  -->
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <h4 class="fw-bold mb-2"><?=$detail['name']?></h4>
                 <div class="mb-4">
                     <span>Số lượng: <?=$detail['sold']?> |</span>
@@ -62,16 +62,16 @@
                     </div>
                 </div> -->
 
-                <div class="d-flex mb-3">
+                <form action="" class="d-flex mb-3">
                     <input type="number" class="soluong fs-5 text-center me-3 p-2" value="1" min="1" max="<?=$detail['quantity']?>">
-                    <button class="d-flex align-items-center add-cart p-2 me-3">
-                        <a href="thanhtoan.html" class="nav-link">Mua ngay</a>
+                    <button type="button" class="d-flex align-items-center add-cart p-2 me-3">
+                        Mua ngay
                     </button>
-                    <button class="d-flex align-items-center add-cart p-2">
+                    <button type="submit" class="d-flex align-items-center add-cart p-2">
                         <i class="bi bi-cart-plus fs-4 me-2"></i>
-                        <a href="giohang.html" class="nav-link">Thêm vào giỏ</a>
+                        Thêm vào giỏ
                     </button>
-                </div>
+                </form>
 
                 <div>
                     <p class="fw-semibold mb-2">Thương hiệu: <?=$detail['brand']?></p>
@@ -85,14 +85,14 @@
     <!-- Start Form bình luận  -->
     <div class="container border border-3 p-2 mb-5">
         <h5 class="title text-uppercase mb-2">Bình luận</h5><hr class="mt-0 border-2 title">
-        <div class="d-flex align-items-center">
+        <form action="" class="d-flex align-items-center">
             <i class="bi bi-person-circle fs-3 me-2"></i>
             <div class="form-floating w-100 me-2">
                 <textarea class="form-control" placeholder="Viết bình luận" id="floatingTextarea"></textarea>
                 <label for="floatingTextarea">Viết bình luận</label>
             </div>
             <button class="btn add-cart rounded">Gửi</button>
-        </div>
+        </form>
     </div>
     <!-- End Form bình luận  -->
 
@@ -108,7 +108,10 @@
                                 <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title"><?=$product['name']?></h5>
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5">
+                                    <?=$product['name']?>
+                                </a>
+                                <!-- <h5 class="card-title"></h5> -->
                                 <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
                             </div>
                         </div>
