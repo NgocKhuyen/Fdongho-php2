@@ -38,7 +38,36 @@
             $sql = "SELECT p.* FROM products p INNER JOIN categories c ON  p.category_id = c.id WHERE p.category_id = $category ORDER BY p.id DESC LIMIT 4";
             return $this->query($sql);
         }
+
+        function count_product() {
+            $sql = "SELECT COUNT(id) AS count FROM products";
+            $row = $this->query_one($sql);
+            return $row['count'];
+        }
         
+        function product_page($number_page, $page_size = 12) {
+            $start = ($number_page - 1) * $page_size;
+            $sql = "SELECT * FROM products ORDER BY updated_at DESC LIMIT $start, $page_size";
+            return $this->query($sql);
+        }
+
+        function count_product_category($slug) {
+            $sql = "SELECT COUNT(p.id) AS count_category FROM products p 
+                    INNER JOIN categories c ON p.category_id = c.id
+                    WHERE c.slug = '$slug'";
+            $row = $this->query($sql);
+            return $row[0]['count_category'];
+        }
+
+        function product_category($slug, $number_page, $page_size = 12) {
+            $start = ($number_page - 1) * $page_size;
+            $sql = "SELECT p.* FROM products p 
+                    INNER JOIN categories c ON p.category_id = c.id
+                    WHERE c.slug = '$slug'
+                    ORDER BY p.id DESC
+                    LIMIT $start, $page_size";
+            return $this->query($sql);
+        }
     } // class product
 
 ?>

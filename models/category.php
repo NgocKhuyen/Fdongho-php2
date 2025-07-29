@@ -6,6 +6,7 @@
             $sql = "SELECT name, slug FROM categories";
             return $this->query($sql);
         }
+
     }
 
 ?>

@@ -11,17 +11,18 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3 border border-2 rounded mb-3">
+            <div class="col-md-3 border border-2 rounded mb-3 h-50">
                 <div class="p-2 mb-2 border-bottom">
                     <h4 class="fw-semibold">Danh mục sản phẩm</h4>
                 </div>
                 <div class="fw-semibold mb-3">
-                    <a href="" class="p-1 nav-link link-hover">
-                        Sản phẩm bán chạy
-                    </a>
-                    <a href="" class="p-1 nav-link link-hover">Sản phẩm mới</a>
-                    <a href="" class="p-1 nav-link link-hover">Đồng hồ nam</a>
-                    <a href="" class="p-1 nav-link link-hover">Đồng hồ nữ</a>
+                    <?php
+                        foreach($category_name as $category) : ?>
+                            <a href="<?=ROOT_URL."loai?slug=".$category['slug']?>" class="p-1 nav-link link-hover">
+                                <?=$category['name']?>
+                            </a>
+                        <?php endforeach;
+                    ?>
                 </div>
 
                 <div class="mb-3">
@@ -69,38 +70,32 @@
                 </div>
                 <!-- Start danh sách sản phẩm  -->
                 <div class="row">
-                    <div class="col-6 col-md-4 mb-3">
-                        <div class="card text-center shadow">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?=PUBLIC_URL?>/image/donghonam1.webp" class="w-100" alt="">
+                    <?php
+                        foreach($product_page as $product) : ?>
+                            <div class="col-6 col-md-4 mb-3">
+                                <div class="card text-center shadow">
+                                    <div class="img-hover img-thumbnail">
+                                        <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title fs-5 nav-link fw-semibold"><?=$product['name']?></a>
+                                        <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Đồng Hồ Nam I&W Carnival 787G2 Automatic</h5>
-                                <h5 class="card-text fw-medium title">5.580.000₫</h5>
-                            </div>
-                        </div>
-                    </div>
+                        <?php endforeach;
+                    ?>
                 </div>
                 <!-- End danh sách sản phẩm  -->
 
                 <!-- Start Phân trang -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination  justify-content-center">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
+                        <?php
+                            for($i = 1; $i <= $number_page; $i++) : ?> 
+                                <li class="page-item"><a class="page-link" href="<?=ROOT_URL."sanpham?page=".$i?>"><?=$i?></a></li>
+                            <?php endfor;
+                        ?>
                     </ul>
                 </nav>
                 <!-- End Phân trang -->
