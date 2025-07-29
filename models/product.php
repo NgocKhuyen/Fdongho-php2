@@ -12,7 +12,7 @@
         }
         
         function product_male() {
-            $sql = "SELECT * FROM products p 
+            $sql = "SELECT p.* FROM products p 
                     INNER JOIN categories c ON p.category_id = c.id 
                     WHERE p.category_id = 1
                     ORDER BY p.id DESC 
@@ -21,7 +21,7 @@
         }
 
         function product_female() {
-            $sql = "SELECT * FROM products p 
+            $sql = "SELECT p.* FROM products p 
                     INNER JOIN categories c ON p.category_id = c.id 
                     WHERE p.category_id = 2
                     ORDER BY p.id DESC 
@@ -35,7 +35,7 @@
         }
 
         function product_related($category) {
-            $sql = "SELECT * FROM products p INNER JOIN categories c ON  p.category_id = c.id WHERE p.category_id = $category ORDER BY p.id DESC LIMIT 4";
+            $sql = "SELECT p.* FROM products p INNER JOIN categories c ON  p.category_id = c.id WHERE p.category_id = $category ORDER BY p.id DESC LIMIT 4";
             return $this->query($sql);
         }
         
