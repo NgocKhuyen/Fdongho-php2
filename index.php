@@ -9,7 +9,7 @@
     $router = [ 
         'get' => [
             '' => [new ProductController, 'index'],
-            'loai' => [new ProductController, 'category'],
+            'loai' => [new ProductController, 'product'],
             'sanpham' => [new ProductController, 'product'],
             'chitiet' => [new ProductController, 'detail']
         ]
