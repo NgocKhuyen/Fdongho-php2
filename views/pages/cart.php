@@ -23,23 +23,40 @@
                         <p class="m-0">Xóa</p>
                     </div>
                 </div><hr class="mt-2 border-1 title">
+        
+                <?php
+                    $total = 0;
+                    $sum_qty = 0;
+                    foreach($_SESSION['cart'] as $id => $qty) : ?>
+                        <?php 
+                            $product = $this->model->cart_product($id);
+                            echo "<pre>";
+                            print_r($product);
+                            echo "</pre>";
+                            $price = ($product['price'] * (1 - ($product['sale'] / 100))) * $qty;
+                            $total += $price;
+                            $sum_qty += $qty;
+                        ?>
 
-                <div class="container p-0">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <input type="checkbox" class="me-2">
-                        <img src="./image/dongho1.webp" width="60" height="60" alt="">
-                        <div class="">
-                            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h5>
-                            <span>Size: M |</span><span> Màu: Trắng</span>
+                        <div class="container p-0">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <input type="checkbox" class="me-2">
+                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" width="60" height="60" alt="">
+                                <div class="">
+                                    <h5><?=$product['name']?>.</h5>
+                                    <!-- <span>Size: M |</span><span> Màu: Trắng</span> -->
+                                </div>
+                                <p class="m-0 title fw-semibold"><?=number_format($price, 0, ',', '.')?>₫</p>
+                                <input type="number" class="me-2 sl text-center" value="<?=$sum_qty?>" min="1">
+                                <a href="#" class="nav-link">
+                                    <i class="bi bi-x fs-4"></i>
+                                </a>
+                            </div>
+                            <hr class="mt-2 border-1">
                         </div>
-                        <p class="m-0 title fw-semibold">1.300.000đ</p>
-                        <input type="number" class="me-2 sl text-center" value="1" min="1">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-x fs-4"></i>
-                        </a>
-                    </div>
-                    <hr class="mt-2 border-1">
-                </div>
+                    <?php endforeach;
+                ?>
+                
             </div>
             <!-- Start Tóm tắt đơn hàng -->
 
@@ -48,7 +65,7 @@
                 <h4 class="mt-2 mb-4 fw-semibold">Thông tin đơn hàng</h4>
                 <div class="d-flex justify-content-between fw-medium">
                     <p class="m-0">Tạm tính (1 sản phẩm)</p>
-                    <p class="title">1.300.000đ</p>
+                    <p class="title">đ</p>
                 </div>
                 <div class="d-flex justify-content-between mb-3 fw-medium">
                     <p class="m-0">Tổng cộng</p>

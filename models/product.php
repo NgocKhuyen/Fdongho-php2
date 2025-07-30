@@ -68,6 +68,11 @@
                     LIMIT $start, $page_size";
             return $this->query($sql);
         }
+
+        function cart_product($id) {
+            $sql = "SELECT * FROM products WHERE id = $id";
+            return $this->query_one($sql);
+        }
     } // class product
 
 ?>

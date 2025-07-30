@@ -63,6 +63,29 @@
             $view = "pages/detail.php";
             include "views/layout.php";
         }
-       
+
+        function showcart() {
+            if(!isset($_SESSION['cart'])|| count($_SESSION['cart']) == 0) {
+                $title_page = "Giỏ hàng trống";
+                $view = "pages/showcart_empty.php";
+                include "views/layout.php";
+            } else {
+                $title_page = "Giỏ hàng";
+                $view = "pages/cart.php";
+                include "views/layout.php";
+            }
+
+        }
+
+        function addtocart() {
+            global $params;
+            $id_sp = $params['id'];
+            $qty = (int) $params['soluong'];
+            if(isset($_SESSION['cart'][$id_sp])) {
+                $qty = $_SESSION['cart'][$id_sp] + $qty;
+            }
+            $_SESSION['cart'][$id_sp] = $qty;
+            header("Location: ".ROOT_URL."showcart");
+        }
     }
 ?>
