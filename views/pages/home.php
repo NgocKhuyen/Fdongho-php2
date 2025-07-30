@@ -48,15 +48,23 @@
             <?php 
                 foreach($product_seller as $product) : ?>
                     <div class="col-6 col-md-3 mb-3">
-                        <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center shadow nav-link">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
-                            </div>
+                        <div class="card text-center shadow nav-link">
+                            <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center nav-link">
+                                <div class="img-hover img-thumbnail">
+                                    <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title"><?=$product['name']?></h5>
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5 fw-semibold">
+                                    <?=$product['name']?>
+                                </a>
                                 <h5 class="card-text fw-medium title"><?=number_format($product['price'], 0, ',', '.')?>₫</h5>
                             </div>
-                        </a>
+                            <a href="<?=ROOT_URL."addtocart?id=".$product['id'] . "&soluong=1"?>" class="d-flex align-items-center justify-content-center add-cart nav-link p-2">
+                                <i class="bi bi-cart-plus fs-4 me-2"></i>
+                                Thêm vào giỏ
+                            </a>
+                        </div>
                     </div>
                 <?php endforeach; 
             ?>
@@ -71,15 +79,23 @@
             <?php
                 foreach($product_new as $product) : ?> 
                     <div class="col-6 col-md-3 mb-3">
-                        <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center shadow nav-link">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
-                            </div>
+                        <div class="card text-center shadow nav-link">
+                            <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center nav-link">
+                                <div class="img-hover img-thumbnail">
+                                    <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title"><?=$product['name']?></h5>
-                                <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5 fw-semibold">
+                                    <?=$product['name']?>
+                                </a>
+                                <h5 class="card-text fw-medium title"><?=number_format($product['price'], 0, ',', '.')?>₫</h5>
                             </div>
-                        </a>
+                            <a href="<?=ROOT_URL."addtocart?id=".$product['id'] . "&soluong=1"?>" class="d-flex align-items-center justify-content-center add-cart nav-link p-2">
+                                <i class="bi bi-cart-plus fs-4 me-2"></i>
+                                Thêm vào giỏ
+                            </a>
+                        </div>
                     </div>
                 <?php endforeach;
             ?>
@@ -100,15 +116,23 @@
             <?php
                 foreach($product_male as $product) : ?> 
                     <div class="col-6 col-md-3 mb-3">
-                        <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center shadow nav-link">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
-                            </div>
+                        <div class="card text-center shadow nav-link">
+                            <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center nav-link">
+                                <div class="img-hover img-thumbnail">
+                                    <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title"><?=$product['name']?></h5>
-                                <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5 fw-semibold">
+                                    <?=$product['name']?>
+                                </a>
+                                <h5 class="card-text fw-medium title"><?=number_format($product['price'], 0, ',', '.')?>₫</h5>
                             </div>
-                        </a>
+                            <a href="<?=ROOT_URL."addtocart?id=".$product['id'] . "&soluong=1"?>" class="d-flex align-items-center justify-content-center add-cart nav-link p-2">
+                                <i class="bi bi-cart-plus fs-4 me-2"></i>
+                                Thêm vào giỏ
+                            </a>
+                        </div>
                     </div>
                 <?php endforeach;
             ?>
@@ -129,15 +153,23 @@
             <?php
                 foreach($product_female as $product) : ?> 
                     <div class="col-6 col-md-3 mb-3">
-                        <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center shadow nav-link">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
-                            </div>
+                        <div class="card text-center shadow nav-link">
+                            <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center nav-link">
+                                <div class="img-hover img-thumbnail">
+                                    <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <h5 class="card-title"><?=$product['name']?></h5>
-                                <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5 fw-semibold">
+                                    <?=$product['name']?>
+                                </a>
+                                <h5 class="card-text fw-medium title"><?=number_format($product['price'], 0, ',', '.')?>₫</h5>
                             </div>
-                        </a>
+                            <a href="<?=ROOT_URL."addtocart?id=".$product['id'] . "&soluong=1"?>" class="d-flex align-items-center justify-content-center add-cart nav-link p-2">
+                                <i class="bi bi-cart-plus fs-4 me-2"></i>
+                                Thêm vào giỏ
+                            </a>
+                        </div>
                     </div>
                 <?php endforeach;
             ?>

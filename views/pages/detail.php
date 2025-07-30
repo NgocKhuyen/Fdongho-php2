@@ -41,37 +41,18 @@
                     <?=$detail['description']?>
                 </p>
 
-                <!-- <div class="d-flex align-items-center mb-3">
-                    <span class="fw-semibold me-2">Size:</span>
-                    <div class="">
-                        <button class="btn btn-size">S</button>
-                        <button class="btn btn-size">M</button>
-                        <button class="btn btn-size">L</button>
-                        <button class="btn btn-size">XL</button>
-                        <button class="btn btn-size">XXL</button>
-                        <button class="btn btn-size">3XL</button>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center mb-3">
-                    <span class="fw-semibold me-2">Màu:</span>
-                    <div class="d-flex">
-                        <img src="./image/trang.jpg" class="rounded-circle border me-2" width="30" height="30" alt="...">
-                        <img src="./image/den.jpg" class="rounded-circle border me-2" width="30" height="30" alt="...">
-                        <img src="./image/do.jpg" class="rounded-circle border" width="30" height="30" alt="...">
-                    </div>
-                </div> -->
-
-                <form action="" class="d-flex mb-3">
+                <div class="d-flex mb-3">
                     <input type="number" class="soluong fs-5 text-center me-3 p-2" value="1" min="1" max="<?=$detail['quantity']?>">
-                    <button type="button" class="d-flex align-items-center add-cart p-2 me-3">
-                        Mua ngay
-                    </button>
-                    <button type="submit" class="d-flex align-items-center add-cart p-2">
+                    
+                    <a href="<?=ROOT_URL."addtocart&id=".$detail['id']."&soluong=1"?>" class="d-flex align-items-center add-cart nav-link p-2 me-3 w-25">
                         <i class="bi bi-cart-plus fs-4 me-2"></i>
                         Thêm vào giỏ
+                    </a>
+
+                    <button type="button" class="d-flex align-items-center justify-content-center add-cart p-2 me-3 w-25 ">
+                        Mua ngay
                     </button>
-                </form>
+                </div>
 
                 <div>
                     <p class="fw-semibold mb-2">Thương hiệu: <?=$detail['brand']?></p>
@@ -103,17 +84,22 @@
             <?php
                 foreach($product_related as $product) : ?>
                     <div class="col-6 col-md-3 mb-3">
-                        <div class="card text-center shadow">
-                            <div class="img-hover img-thumbnail">
-                                <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" class="w-100" alt="">
-                            </div>
+                        <div class="card text-center shadow nav-link">
+                            <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card text-center nav-link">
+                                <div class="img-hover img-thumbnail">
+                                    <img src="<?= PUBLIC_URL ?>/image/<?=$product['img']?>" class="w-100" alt="">
+                                </div>
+                            </a>
                             <div class="card-body">
-                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5">
+                                <a href="<?=ROOT_URL."chitiet?slug=".$product['slug']?>" class="card-title nav-link fs-5 fw-semibold">
                                     <?=$product['name']?>
                                 </a>
-                                <!-- <h5 class="card-title"></h5> -->
-                                <h5 class="card-text fw-medium title"><?=number_format($product['price'] * $product['sale'], 0, ',', '.')?>₫</h5>
+                                <h5 class="card-text fw-medium title"><?=number_format($product['price'], 0, ',', '.')?>₫</h5>
                             </div>
+                            <a href="<?=ROOT_URL."addtocart?id=".$product['id'] . "&soluong=1"?>" class="d-flex align-items-center justify-content-center add-cart nav-link p-2">
+                                <i class="bi bi-cart-plus fs-4 me-2"></i>
+                                Thêm vào giỏ
+                            </a>
                         </div>
                     </div>
                 <?php endforeach;

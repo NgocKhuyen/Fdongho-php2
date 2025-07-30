@@ -11,7 +11,9 @@
             '' => [new ProductController, 'index'],
             'loai' => [new ProductController, 'product'],
             'sanpham' => [new ProductController, 'product'],
-            'chitiet' => [new ProductController, 'detail']
+            'chitiet' => [new ProductController, 'detail'],
+            'addtocart' => [new ProductController, 'addtocart'],
+            'showcart' => [new ProductController, 'showcart'],
         ]
     ];
 
