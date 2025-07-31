@@ -65,11 +65,13 @@
         }
 
         function showcart() {
+            // unset($_SESSION['cart']);
             if(!isset($_SESSION['cart'])|| count($_SESSION['cart']) == 0) {
                 $title_page = "Giỏ hàng trống";
                 $view = "pages/showcart_empty.php";
                 include "views/layout.php";
             } else {
+                $product_count = count($_SESSION['cart']);
                 $title_page = "Giỏ hàng";
                 $view = "pages/cart.php";
                 include "views/layout.php";
@@ -86,6 +88,22 @@
             }
             $_SESSION['cart'][$id_sp] = $qty;
             header("Location: ".ROOT_URL."showcart");
+        }
+
+        function delcart() {
+            global $params;
+            $id_sp = $params['id'];
+            $action = $params['action'];
+            
+            if(isset($action) === 'delitem') {
+                unset($_SESSION['cart'][$id_sp]);
+                echo 'xóa thành công';
+            }
+            if(isset($action) === 'clean') {
+                unset($_SESSION['cart']);
+                echo 'xóa thành công';
+            }
+            // header("Location: ".ROOT_URL."showcart");
         }
     }
 ?>

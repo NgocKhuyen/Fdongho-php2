@@ -16,11 +16,11 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex">
                         <input type="checkbox" class="me-2">
-                        <label for="">Chọn tất cả (1 sản phẩm)</label>
+                        <label for="">Chọn tất cả (<?=$product_count?> sản phẩm)</label>
                     </div>
                     <div class="d-flex">
                         <i class="bi bi-trash3-fill me-1"></i>
-                        <p class="m-0">Xóa</p>
+                        <a href="<?=ROOT_URL."delcart?action=clean"?>" class="m-0 nav-link text-danger">Xóa</a>
                     </div>
                 </div><hr class="mt-2 border-1 title">
         
@@ -30,9 +30,9 @@
                     foreach($_SESSION['cart'] as $id => $qty) : ?>
                         <?php 
                             $product = $this->model->cart_product($id);
-                            echo "<pre>";
-                            print_r($product);
-                            echo "</pre>";
+                            // echo "<pre>";
+                            // print_r($product);
+                            // echo "</pre>";
                             $price = ($product['price'] * (1 - ($product['sale'] / 100))) * $qty;
                             $total += $price;
                             $sum_qty += $qty;
@@ -40,15 +40,14 @@
 
                         <div class="container p-0">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <input type="checkbox" class="me-2">
+                                <input type="checkbox" class="me-2" />
                                 <img src="<?=PUBLIC_URL?>/image/<?=$product['img']?>" width="60" height="60" alt="">
                                 <div class="">
-                                    <h5><?=$product['name']?>.</h5>
-                                    <!-- <span>Size: M |</span><span> Màu: Trắng</span> -->
+                                    <h5><?=$product['name']?></h5>
                                 </div>
                                 <p class="m-0 title fw-semibold"><?=number_format($price, 0, ',', '.')?>₫</p>
-                                <input type="number" class="me-2 sl text-center" value="<?=$sum_qty?>" min="1">
-                                <a href="#" class="nav-link">
+                                <span class="me-2 sl text-center"><?=$qty?></span>
+                                <a href="<?=ROOT_URL."delcart?action=delitem&id=".$product['id']?>" class="nav-link">
                                     <i class="bi bi-x fs-4"></i>
                                 </a>
                             </div>
@@ -61,15 +60,15 @@
             <!-- Start Tóm tắt đơn hàng -->
 
             <!-- Start Thông tin đơn hàng -->
-            <div class="col-12 col-md-3 bg-body-secondary mb-3">
+            <div class="col-12 col-md-3 bg-body-secondary mb-3 h-50">
                 <h4 class="mt-2 mb-4 fw-semibold">Thông tin đơn hàng</h4>
                 <div class="d-flex justify-content-between fw-medium">
-                    <p class="m-0">Tạm tính (1 sản phẩm)</p>
-                    <p class="title">đ</p>
+                    <p class="m-0">Tạm tính (<?=$sum_qty?> sản phẩm)</p>
+                    <p class="title"><?=number_format($total, 0, ',', '.')?>₫</p>
                 </div>
                 <div class="d-flex justify-content-between mb-3 fw-medium">
                     <p class="m-0">Tổng cộng</p>
-                    <p class="title">1.300.000đ</p>
+                    <p class="title"><?=number_format($total, 0, ',', '.')?>₫</p>
                 </div>
                 <button class="btn-chec mb-3 w-100"><a href="thanhtoan.html" class="nav-link">Mua hàng</a></button>
             </div>

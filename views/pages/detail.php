@@ -44,7 +44,7 @@
                 <div class="d-flex mb-3">
                     <input type="number" class="soluong fs-5 text-center me-3 p-2" value="1" min="1" max="<?=$detail['quantity']?>">
                     
-                    <a href="<?=ROOT_URL."addtocart&id=".$detail['id']."&soluong=1"?>" class="d-flex align-items-center add-cart nav-link p-2 me-3 w-25">
+                    <a href="<?=ROOT_URL."addtocart?id=".$detail['id']."&soluong=1"?>" class="d-flex align-items-center add-cart nav-link p-2 me-3 w-25">
                         <i class="bi bi-cart-plus fs-4 me-2"></i>
                         Thêm vào giỏ
                     </a>
