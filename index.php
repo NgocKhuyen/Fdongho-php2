@@ -14,6 +14,7 @@
             'chitiet' => [new ProductController, 'detail'],
             'addtocart' => [new ProductController, 'addtocart'],
             'showcart' => [new ProductController, 'showcart'],
+            'delcart' => [new ProductController, 'delcart'],
         ]
     ];
 
