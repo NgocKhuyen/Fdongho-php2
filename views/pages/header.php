@@ -41,8 +41,8 @@
                                     <i class="bi bi-person-circle text-white fs-4"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Đăng kí</a></li>
-                                    <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" href="<?=ROOT_URL."dangki"?>">Đăng kí</a></li>
+                                    <li><a class="dropdown-item" href="<?=ROOT_URL."dangnhap"?>">Đăng nhập</a></li>
                                 </ul>
                             </li>
                             <!-- <li class="nav-item">

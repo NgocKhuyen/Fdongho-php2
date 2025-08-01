@@ -17,9 +17,13 @@
             'delcart' => [new ProductController, 'delcart'],
             'thanhtoan' => [new ProductController, 'checkout'],
             'trangthai' => [new ProductController, 'payment_success'],
+            'dangki' => [new UserController, 'register'],
+            'dangnhap' => [new UserController, 'login'],
         ],
         'post' => [
             'thanhtoan_'  => [new ProductController, 'checkout_'],
+            'dangki_'  => [new UserController, 'register_'],
+            'dangnhap_' => [new UserController, 'login_'],
         ]
     ];
 
