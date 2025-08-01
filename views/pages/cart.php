@@ -70,7 +70,7 @@
                     <p class="m-0">Tổng cộng</p>
                     <p class="title"><?=number_format($total, 0, ',', '.')?>₫</p>
                 </div>
-                <button class="btn-chec mb-3 w-100"><a href="thanhtoan.html" class="nav-link">Mua hàng</a></button>
+                <a href="<?=ROOT_URL."thanhtoan"?>" class="d-flex justify-content-center align-items-center nav-link btn-chec mb-3 w-100">Mua hàng</a>
             </div>
             <!-- End Thông tin đơn hàng -->
         </div>

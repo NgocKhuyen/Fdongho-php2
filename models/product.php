@@ -73,6 +73,36 @@
             $sql = "SELECT * FROM products WHERE id = $id";
             return $this->query_one($sql);
         }
+
+        function save_checkout($name, $phone, $address, $description, $payment) {
+            $sql = "INSERT INTO `order` (name, phone, address, description, payment)
+                    VALUES (:na, :ph, :ad, :de, :pa)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(":na", $name, PDO::PARAM_STR);
+            $stmt->bindParam(":ph", $phone, PDO::PARAM_STR);
+            $stmt->bindParam(":ad", $address, PDO::PARAM_STR);
+            $stmt->bindParam(":de", $description, PDO::PARAM_STR);
+            $stmt->bindParam(":pa", $payment, PDO::PARAM_STR);
+            $stmt->execute();
+            $id_ch = $this->conn->lastInsertId();
+            return $id_ch;
+        }
+
+        function save_order($id_ch) {
+            foreach($_SESSION['cart'] as $id_pr => $qty) {
+                $product = $this->cart_product($id_pr);
+                $price = $product['price'] * (1 - ($product['sale']/100));
+                $sql = "INSERT INTO order_detail (id_order, id_product, name, quantity, price)
+                        VALUES(:or, :pr, :na, :qu, :pi)";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(":or", $id_ch, PDO::PARAM_INT);
+                $stmt->bindParam(":pr", $id_pr, PDO::PARAM_INT);
+                $stmt->bindParam(":na", $product['name'], PDO::PARAM_STR);
+                $stmt->bindParam(":qu", $qty, PDO::PARAM_INT);
+                $stmt->bindParam(":pi", $price, PDO::PARAM_INT);
+                $stmt->execute(); 
+            }
+        }
     } // class product
 
 ?>

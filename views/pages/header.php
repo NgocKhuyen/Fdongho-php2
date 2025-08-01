@@ -16,12 +16,21 @@
                         </form>
                         <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-end">
                             <li class="nav-item me-3">  
-                                <a href="#" class="btn position-relative">
+                                <a href="<?=ROOT_URL."showcart"?>" class="btn position-relative">
                                     <i class="bi bi-cart3 ic-color fs-4"></i>
                                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill ic-color badge text-white">
-                                        0
+                                        <?php
+                                            $count_qty = 0;
+                                            if(isset($_SESSION['cart'])) {
+                                                $count_qty = count($_SESSION['cart']);
+                                                echo $count_qty;
+                                            } else {
+                                                echo 0;
+                                            }
+                                        ?>
                                         <span class="visually-hidden"></span>
                                     </span>
+                                    
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
