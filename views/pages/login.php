@@ -16,7 +16,6 @@
                     <div class="col-lg-8">
                         <h2 class="fw-bold mb-5 text-center">ĐĂNG NHẬP</h2>
                         <form id="frmlogin" action="" method="post">
-                            @csrf
                             <div class="ms-4 me-4">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Email:</label>
@@ -41,14 +40,17 @@
                                     </div>
                                 </div>
                                 
-                                @if (Session::has('message'))
-                                    <div class="alert alert-danger">
-                                        {{ Session::get('message') }}
-                                    </div>
-                                    @php
-                                        Session::forget('message');
-                                    @endphp
-                                @endif
+                                <!-- <div class="alert alert-danger">
+
+                                </div> -->
+
+                                <?php
+                                    if(!empty($_SESSION['success'])) : ?>
+                                        <div class="alert alert-success">
+                                            <?=$_SESSION['success']?>
+                                        </div>
+                                    <?php endif;
+                                ?>
 
                                 <!-- Submit button -->
                                 <div class="row d-flex justify-content-center">

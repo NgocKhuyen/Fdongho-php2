@@ -7,38 +7,65 @@
                 ">
                 <div class="card-body p-5 shadow-5">
                     <h2 class="fw-bold mb-5 text-center">ĐĂNG KÍ</h2>
-                    <form id="frmregister" action="" method="post">
-                        @csrf 
+                    <form id="frmregister" action="dangki_" method="post">
+                        
                         <div class="ms-4 me-4">
                             <div class="mb-3">
                                 <label for="" class="form-label">Họ tên:</label>
-                                <input type="text" name="hoten" class="form-control border-primary-subtle shadow-none">                                      
+                                <input type="text" name="name" class="form-control border-primary-subtle shadow-none" value="<?= $_SESSION['old']['name'] ?? '' ?>">                                      
                             </div>
-                            {{-- <div class="mb-3">
-                                <label for="" class="form-label">Số điện thoại:</label>
-                                <input type="text" name="sodienthoai" class="form-control border-primary-subtle shadow-none">
-                            </div> --}}
+                            <?php
+                                if(!empty($_SESSION['errors']['name'])) : ?>
+                                    <div class="alert alert-danger">
+                                        <?=$_SESSION['errors']['name']?>
+                                    </div>
+                                <?php endif;
+                            ?>
+
                             <div class="mb-3">
                                 <label for="" class="form-label">Email:</label>
-                                <input type="email" name="email" class="form-control border-primary-subtle shadow-none">
-                                
+                                <input type="email" name="email" class="form-control border-primary-subtle shadow-none" value="<?= $_SESSION['old']['email'] ?? '' ?>">
                             </div>
+                            <?php
+                                if(!empty($_SESSION['errors']['email'])) : ?>
+                                    <div class="alert alert-danger">
+                                        <?=$_SESSION['errors']['email']?>
+                                    </div>
+                                <?php endif;
+                            ?>
+
                             <div class="mb-3">
                                 <label for="" class="form-label">Mật khẩu:</label>
-                                <input type="password" name="matkhau" class="form-control border-primary-subtle shadow-none">           
+                                <input type="password" name="pass" class="form-control border-primary-subtle shadow-none">           
                             </div>
+
+                            <?php
+                                if(!empty($_SESSION['errors']['pass'])) : ?>
+                                    <div class="alert alert-danger">
+                                        <?=$_SESSION['errors']['pass']?>
+                                    </div>
+                                <?php endif;
+                            ?>
+
                             <div class="mb-3">
                                 <label for="" class="form-label">Nhập lại mật khẩu:</label>
-                                <input type="password" name="matkhau2" class="form-control border-primary-subtle shadow-none">           
+                                <input type="password" name="pass_confirm" class="form-control border-primary-subtle shadow-none">           
                             </div>
-                            @if (Session::has('message'))
-                                <div class="alert alert-danger">
-                                    {{ Session::get('message') }}
-                                </div>
-                                @php
-                                    Session::forget('message');
-                                @endphp
-                            @endif
+                            <?php
+                                if(!empty($_SESSION['errors']['pass_confirm'])) : ?>
+                                    <div class="alert alert-danger">
+                                        <?=$_SESSION['errors']['pass_confirm']?>
+                                    </div>
+                                <?php endif;
+                            ?>
+
+                            <?php
+                                if(!empty($_SESSION['success'])) : ?>
+                                    <div class="alert alert-success">
+                                        <?=$_SESSION['success']?>
+                                    </div>
+                                <?php endif;
+                            ?>
                                 
                             <div class="row d-flex justify-content-center">
                                 <button type="submit" class="btn add-cart btn-block mb-4 mt-3">
@@ -46,7 +73,7 @@
                                 </button>
                             </div>
                             <div class="text-center">
-                                <p>Bạn đã có tài khoản. Vui lòng đăng nhập <a href="{{ route('login') }}">tại đây</a>.</p>
+                                <p>Bạn đã có tài khoản. Vui lòng đăng nhập <a href="<?=ROOT_URL."dangnhap"?>">tại đây</a>.</p>
                             </div>
                             <!-- <div class="mb-3">
                                 <button class="btn btn-outline-success" type="submit">Đăng kí</button>   
@@ -62,5 +89,10 @@
             alt="" />
         </div>
     </div>
+
+    <?php
+        unset($_SESSION['errors']);
+        unset($_SESSION['success']);
+    ?>
 </div>
 <!-- form đăng kí -->
