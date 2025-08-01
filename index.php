@@ -15,6 +15,11 @@
             'addtocart' => [new ProductController, 'addtocart'],
             'showcart' => [new ProductController, 'showcart'],
             'delcart' => [new ProductController, 'delcart'],
+            'thanhtoan' => [new ProductController, 'checkout'],
+            'trangthai' => [new ProductController, 'payment_success'],
+        ],
+        'post' => [
+            'thanhtoan_'  => [new ProductController, 'checkout_'],
         ]
     ];
 

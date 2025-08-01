@@ -92,18 +92,48 @@
 
         function delcart() {
             global $params;
-            $id_sp = $params['id'];
-            $action = $params['action'];
-            
-            if(isset($action) === 'delitem') {
+            $id_sp = $params['id'] ?? null;
+            $action = $params['action'] ?? null;
+            if(isset($action) && $action === 'delitem' && $id_sp != null) {
                 unset($_SESSION['cart'][$id_sp]);
                 echo 'xóa thành công';
             }
-            if(isset($action) === 'clean') {
+            if(isset($action) && $action === 'clean' && $id_sp == null) {
                 unset($_SESSION['cart']);
                 echo 'xóa thành công';
             }
-            // header("Location: ".ROOT_URL."showcart");
+            header("Location: ".ROOT_URL."showcart");
+        }
+
+        function checkout() {
+            $title_page = "Thanh toán";
+            $view = "pages/checkout.php";
+            include "views/layout.php";
+        }
+
+        function payment_success() {
+            $title_page = "Đặt hàng thành công";
+            $view = "pages/payment_success.php";
+            include "views/layout.php";
+        }
+
+        function checkout_() {
+            $name = trim(strip_tags($_POST['name']));
+            $phone = trim(strip_tags($_POST['phone']));
+            $address = trim(strip_tags($_POST['address']));
+            $description = trim(strip_tags($_POST['description']));
+            $payment = trim(strip_tags($_POST['payment']));
+            $id_order = $this->model->save_checkout($name, $phone, $address, $description, $payment);
+            if($id_order) {
+                $this->model->save_order( $id_order);
+                unset($_SESSION['cart']);
+                header("Location: ".ROOT_URL."trangthai");
+                exit();
+            } else {
+                header("Location: " . ROOT_URL . "trangthai?error=1");
+                exit();
+            }
+            
         }
     }
 ?>
