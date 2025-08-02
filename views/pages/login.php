@@ -15,16 +15,37 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <h2 class="fw-bold mb-5 text-center">ĐĂNG NHẬP</h2>
-                        <form id="frmlogin" action="" method="post">
+                        <form id="frmlogin" action="dangnhap_" method="post">
+                            <?php
+                                $errors = $_SESSION['login_errors'] ?? [];
+                                // echo "<pre>";
+                                // print_r( $errors['email']);
+                                // echo "</pre>";
+                                $old_email = $_SESSION['old_email'] ?? '';
+                            ?>
                             <div class="ms-4 me-4">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Email:</label>
-                                    <input type="email" name="email" class="form-control border-primary-subtle shadow-none">
+                                    <input type="email" name="email" value="<?=htmlspecialchars($old_email)?>" class="form-control border-primary-subtle shadow-none">
                                 </div>
+                                <?php
+                                    if(!empty($errors['emailErr'])) : ?>
+                                        <div class="alert alert-danger">
+                                            <?=$errors['emailErr']?>
+                                        </div>
+                                    <?php endif;
+                                ?>
                                 <div class="mb-3">
                                     <label for="" class="form-label">Mật khẩu:</label>
-                                    <input type="password" name="matkhau" class="form-control border-primary-subtle shadow-none">
+                                    <input type="password" name="pass" class="form-control border-primary-subtle shadow-none">
                                 </div>
+                                <?php
+                                    if(!empty($errors['passErr'])) : ?>
+                                        <div class="alert alert-danger">
+                                            <?=$errors['passErr']?>
+                                        </div>
+                                    <?php endif;
+                                ?>
                                 <div class="row mb-4 mt-3">
                                     <div class="col-6 d-flex justify-content-start">
                                         <!-- Checkbox -->
@@ -43,15 +64,6 @@
                                 <!-- <div class="alert alert-danger">
 
                                 </div> -->
-
-                                <?php
-                                    if(!empty($_SESSION['success'])) : ?>
-                                        <div class="alert alert-success">
-                                            <?=$_SESSION['success']?>
-                                        </div>
-                                    <?php endif;
-                                ?>
-
                                 <!-- Submit button -->
                                 <div class="row d-flex justify-content-center">
                                     <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn add-cart btn-block mb-4 mt-3">
@@ -60,7 +72,7 @@
                                 </div>
     
                                 <div class="text-center">
-                                    <p>Bạn chưa có tài khoản. Đăng ký <a href="{{ route('register') }}">tại đây</a>.</p>
+                                    <p>Bạn chưa có tài khoản. Đăng ký <a href="<?=ROOT_URL."dangki"?>">tại đây</a>.</p>
                                 </div>
                                 <!-- <div class="mb-3">
                                     <button class="btn btn-outline-success" type="submit">Đăng nhập</button>   
@@ -72,5 +84,8 @@
             </div>
         </div>
     </div>
+    <?php
+        unset($_SESSION['success']);
+    ?>
 </div>
 <!-- form đăng nhập -->

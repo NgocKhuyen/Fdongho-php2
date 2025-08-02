@@ -41,8 +41,16 @@
                                     <i class="bi bi-person-circle text-white fs-4"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="<?=ROOT_URL."dangki"?>">Đăng kí</a></li>
-                                    <li><a class="dropdown-item" href="<?=ROOT_URL."dangnhap"?>">Đăng nhập</a></li>
+                                    <?php
+                                        if(!empty($_SESSION['id_user'])) : ?>
+                                            <li><a class="dropdown-item fw-semibold" href="#!"><?=$_SESSION['name']?></a></li>
+                                            <li><a class="dropdown-item text-danger" href="<?=ROOT_URL."dangxuat"?>">Đăng xuất</a></li>
+                                        <?php else : ?>
+                                            <li><a class="dropdown-item" href="<?=ROOT_URL."dangki"?>">Đăng kí</a></li>
+                                            <li><a class="dropdown-item" href="<?=ROOT_URL."dangnhap"?>">Đăng nhập</a></li>
+                                        <?php endif;
+                                    ?>
+                                    
                                 </ul>
                             </li>
                             <!-- <li class="nav-item">
