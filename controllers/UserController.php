@@ -61,4 +61,24 @@
             include "views/layout.php";
         }
 
+        function login_() {
+            $email = trim(strip_tags($_POST['email']));
+            $pass = trim(strip_tags($_POST['pass']));
+            $result = $this->model->check_user($email, $pass);
+            if (isset($result['emailErr']) || isset($result['passErr'])) {
+                $_SESSION['login_errors'] = $result;
+                $_SESSION['old_email'] = $email;
+                header("Location: " . ROOT_URL . "dangnhap");
+                exit;
+            }
+            
+            $_SESSION['id_user'] = $result['id'];
+            $_SESSION['name'] = $result['name'];
+            header("Location: ".ROOT_URL);
+        }
+
+        function logout() {
+            unset($_SESSION['id_user'],  $_SESSION['name'], $_SESSION['old_email']);
+            header("Location: ".ROOT_URL);
+        }
     }

@@ -19,6 +19,7 @@
             'trangthai' => [new ProductController, 'payment_success'],
             'dangki' => [new UserController, 'register'],
             'dangnhap' => [new UserController, 'login'],
+            'dangxuat' => [new UserController, 'logout'],
         ],
         'post' => [
             'thanhtoan_'  => [new ProductController, 'checkout_'],
