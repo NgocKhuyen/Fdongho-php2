@@ -103,6 +103,18 @@
                 $stmt->execute(); 
             }
         }
+
+        function total_product() {
+            $sql = "SELECT COUNT(*) AS count_product FROM products";
+            $row = $this->query($sql);
+            return $row[0]['count_product'];
+        }
+
+         function product_hot() {
+            $sql = "SELECT COUNT(*) AS count_product FROM products WHERE hot = 1";
+            $row = $this->query($sql);
+            return $row[0]['count_product'];
+        }
     } // class product
 
 ?>
