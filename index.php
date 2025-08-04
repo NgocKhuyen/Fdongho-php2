@@ -20,6 +20,8 @@
             'dangki' => [new UserController, 'register'],
             'dangnhap' => [new UserController, 'login'],
             'dangxuat' => [new UserController, 'logout'],
+
+            'admin' => [new AdminController, 'index'],
         ],
         'post' => [
             'thanhtoan_'  => [new ProductController, 'checkout_'],

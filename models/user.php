@@ -29,4 +29,10 @@
             }
 
         }
+
+        function user_list() {
+            $sql = "SELECT COUNT(*) AS count_user FROM users";
+            $row = $this->query($sql);
+            return $row[0]['count_user'];
+        }
     } // class user
