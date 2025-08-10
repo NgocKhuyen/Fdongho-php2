@@ -110,10 +110,17 @@
             return $row[0]['count_product'];
         }
 
-         function product_hot() {
+        function product_hot() {
             $sql = "SELECT COUNT(*) AS count_product FROM products WHERE hot = 1";
             $row = $this->query($sql);
             return $row[0]['count_product'];
+        }
+
+
+        function product_list($number_page, $page_size = 10) {
+            $start = ($number_page - 1) * $page_size;
+            $sql = "SELECT p.*, c.name AS name_category FROM products p INNER JOIN categories c ON c.id = p.category_id ORDER BY p.id DESC LIMIT $start, $page_size";
+            return $this->query($sql);
         }
     } // class product
 
