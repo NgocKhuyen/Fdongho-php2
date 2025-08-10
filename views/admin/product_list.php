@@ -24,28 +24,29 @@
             <th class="w-10">Giá</th>
             <th class="w-10">Giá KM</th>
             <th class="w-10">Ngày</th>
-            <th class="w-5">Ẩn hiện</th>
+            <th class="w-5 text-center">Đã bán</th>
             <th class="w-5">Trạng thái</th>
             <th class="w-10">Tính năng</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                $stt = ($pageNum - 1) * $pageSize + 1;
-                foreach($listSP as $sp) { ?>
+                $stt = ($pageNum - 1) * $page_size + 1;
+                foreach($product_list as $product) { ?>
                     <tr class="align-items-center">
                         <td><span><?=$stt++?></span></td>
-                        <td><img src="<?=$sp['hinh']?> " style="width: 50px; height: 35px" alt="No image"></td>
-                        <td> <?=$sp['ten_sp']?> </td>
-                        <td> <?=$this->model->layTenLoai($sp['id_loai'])?> </td>
-                        <td> <?=$sp['gia']?> </td>
-                        <td> <?=$sp['gia_km']?> </td>
-                        <td> <?=$sp['ngay']?> </td>
-                        <td> <?=$sp['anhien']==1?'Đang hiện' : 'Đang ẩn'?> </td>
-                        <td> <?=$sp['hot']==1?'Nổi bật':'Bình thường'?> </td>
+                        <!-- <td><span>1</span></td> -->
+                        <td><img src="<?=PUBLIC_URL."/image/".$product['img']?> " style="width: 50px; height: 50px" alt="No image"></td>
+                        <td> <?=$product['name']?> </td>
+                        <td> <?=$product['name_category']?> </td>
+                        <td> <?=$product['price']?> </td>
+                        <td> <?=$product['price'] * (1 - ($product['sale'] / 100))?> </td>
+                        <td> <?=date('d/m/Y',strtotime($product['created_at']))?> </td>
+                        <td class="text-center"> <?=$product['sold']?> </td>
+                        <td class="text-center"> <?=$product['hot'] == 1 ? 'Nổi bật':'Bình thường'?> </td>
                         <td>
-                            <button class="btn btn-outline-warning p-1"><a href="<?=ROOT_URL."admin/editsp?id=".$sp['id_sp']; ?>" class="nav-link">Sửa</a></button>
-                            <button class="btn btn-outline-danger p-1"><a href="<?=ROOT_URL."admin/deletesp?id=".$sp['id_sp']; ?>" class="nav-link" onclick="return confirm('Tiếp tục xóa')">Xóa</a></button>
+                            <button class="btn btn-outline-warning p-1"><a href="<?=ROOT_URL."admin/editsp?id=".$product['id']; ?>" class="nav-link">Sửa</a></button>
+                            <button class="btn btn-outline-danger p-1"><a href="<?=ROOT_URL."admin/deletesp?id=".$product['id']; ?>" class="nav-link" onclick="return confirm('Tiếp tục xóa')">Xóa</a></button>
                         </td>
                     </tr>
                 <?php }
@@ -60,7 +61,7 @@
                 <li class="page-item">
                     <?php 
                         if($pagePrev >= 1) { ?>
-                            <a class="page-link" href="<?=ROOT_URL."admin/sp?page=$pagePrev"; ?>" aria-label="Previous">
+                            <a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=$pagePrev"; ?>" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         <?php }
@@ -68,20 +69,16 @@
                 </li>
                             
                 <?php
-                    $start = max(1, $pageNum - 2);
-                    $end = min($tongSoTrang, $pageNum + 2);
-                    for($i = $start; $i <= $end; $i++) { ?>
-                        <li class="page-item <?=($i == $pageNum) ? 'active' : '' ?>">
-                            <a class="page-link" href='<?=ROOT_URL."admin/sp?page=$i"?>'><?=$i?></a>
-                        </li>
-                    <?php }
+                    for($i = 1; $i <= $number_page; $i++) : ?> 
+                        <li class="page-item"><a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=".$i?>"><?=$i?></a></li>
+                    <?php endfor;
                 ?>
                 
                 <!-- Next -->
                 <li class="page-item">
                     <?php 
-                        if($pageNext < $tongSoTrang) { ?>
-                            <a class="page-link" href="<?=ROOT_URL."admin/sp?page=$pageNext"; ?>" aria-label="Next">
+                        if($pageNext < $number_page) { ?>
+                            <a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=$pageNext"; ?>" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         <?php }

@@ -22,6 +22,7 @@
             'dangxuat' => [new UserController, 'logout'],
 
             'admin' => [new AdminController, 'index'],
+            'admin/sanpham' => [new AdminProductController, 'index'],
         ],
         'post' => [
             'thanhtoan_'  => [new ProductController, 'checkout_'],
