@@ -23,6 +23,7 @@
 
             'admin' => [new AdminController, 'index'],
             'admin/sanpham' => [new AdminProductController, 'index'],
+            'admin/loai' => [new AdminCategoryController, 'index'],
         ],
         'post' => [
             'thanhtoan_'  => [new ProductController, 'checkout_'],

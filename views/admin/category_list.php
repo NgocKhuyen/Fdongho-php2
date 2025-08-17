@@ -16,24 +16,24 @@
         <thead>
             <tr class="text-center">
             <th class="w-5">STT</th>
+            <th class="w-5">Hình</th>
             <th class="w-40">Tên Loại</th>
             <th class="w-5">Thứ tự</th>
-            <th class="w-25">Ẩn hiện</th>
             <th class="w-25">Tính năng</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                $stt = ($pageNum - 1) * $pageSize + 1;
-                foreach($listLoaiSP as $loai) { ?>
+                $stt = ($pageNum - 1) * $page_size + 1;
+                foreach($category_list as $category) { ?>
                     <tr class="align-items-center text-center">
                         <td><span><?=$stt++?></span></td>
-                        <td> <?=$loai['ten_loai']?> </td>
-                        <td> <?=$loai['thutu']?> </td>
-                        <td> <?=$loai['anhien']==1?'Đang hiện' : 'Đang ẩn'?> </td>
+                        <td> <img src="<?=PUBLIC_URL."/image/".$category['img']?>" width="50" height="50"  alt=""> </td>
+                        <td class="text-center"> <?=$category['name']?> </td>
+                        <td> <?=$category['ordinal']?> </td>
                         <td>
-                            <button class="btn btn-outline-warning p-1"><a href="<?=ROOT_URL."admin/editloai?id=".$loai['id_loai']; ?>" class="nav-link">Sửa</a></button>
-                            <button class="btn btn-outline-danger p-1"><a href="<?=ROOT_URL."admin/deleteloai?id=".$loai['id_loai']; ?>" class="nav-link" onclick="return confirm('Tiếp tục xóa')">Xóa</a></button>
+                            <button class="btn btn-outline-warning p-1"><a href="<?=ROOT_URL."admin/editloai?id=".$category['id']; ?>" class="nav-link">Sửa</a></button>
+                            <button class="btn btn-outline-danger p-1"><a href="<?=ROOT_URL."admin/deleteloai?id=".$category['id']; ?>" class="nav-link" onclick="return confirm('Tiếp tục xóa')">Xóa</a></button>
                         </td>
                     </tr>
                 <?php }       
@@ -49,7 +49,7 @@
                 <li class="page-item">
                     <?php 
                         if($pagePrev >= 1) { ?>
-                            <a class="page-link" href="<?=ROOT_URL."admin/loai?page=$pagePrev"; ?>" aria-label="Previous">
+                            <a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=$pagePrev"; ?>" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         <?php }
@@ -57,20 +57,16 @@
                 </li>
                             
                 <?php
-                    $start = max(1, $pageNum - 2);
-                    $end = min($tongSoTrang, $pageNum + 2);
-                    for($i = $start; $i <= $end; $i++) { ?>
-                        <li class="page-item <?=($i == $pageNum) ? 'active' : '' ?>">
-                            <a class="page-link" href='<?=ROOT_URL."admin/loai?page=$i"?>'><?=$i?></a>
-                        </li>
-                    <?php }
+                    for($i = 1; $i <= $number_page; $i++) : ?> 
+                        <li class="page-item"><a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=".$i?>"><?=$i?></a></li>
+                    <?php endfor;
                 ?>
                 
                 <!-- Next -->
                 <li class="page-item">
                     <?php 
-                        if($pageNext < $tongSoTrang) { ?>
-                            <a class="page-link" href="<?=ROOT_URL."admin/loai?page=$pageNext"; ?>" aria-label="Next">
+                        if($pageNext < $number_page) { ?>
+                            <a class="page-link" href="<?=ROOT_URL."admin/sanpham?page=$pageNext"; ?>" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         <?php }
