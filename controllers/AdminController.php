@@ -24,9 +24,7 @@
             $title_page = "Tổng quan";
             $view = "home.php";
             include_once "views/admin/layout.php";
-            $title_page = "Tổng quan";
-            $view = "home.php";
-            include_once "views/admin/layout.php";
+           
         }
     }
 
